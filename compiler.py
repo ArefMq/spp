@@ -71,7 +71,7 @@ class Compiler(Interpreter):
             result = result.replace(key, value)
         result = result.split('#')
 
-        result.insert(0, '#@ %s' % instruction)
+        result.insert(0, '# %s' % instruction)
         return result
 
     @staticmethod
