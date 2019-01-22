@@ -21,23 +21,26 @@ class Godel:
 
     @staticmethod
     def encode(code):
-        factors = []
-        for line in code:
-            coded_inst = Godel.encode_instruction(line)
-            factors.append(coded_inst)
-        factors.reverse()
-    
-        result = 1
-        counter = 1
-        while True:
-            counter += 1
-            if not Godel.is_prime(counter):
-                continue
-    
-            result *= counter ** factors.pop()
-            if len(factors) == 0:
-                break
-        return result
+        try:
+            factors = []
+            for line in code:
+                coded_inst = Godel.encode_instruction(line)
+                factors.append(coded_inst)
+            factors.reverse()
+
+            result = 1
+            counter = 1
+            while True:
+                counter += 1
+                if not Godel.is_prime(counter):
+                    continue
+
+                result *= counter ** factors.pop()
+                if len(factors) == 0:
+                    break
+            return result
+        except:
+            print('File is not Godel format compatible')
 
     @staticmethod
     def decode(number):

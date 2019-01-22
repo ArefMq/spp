@@ -24,4 +24,8 @@ Here are some examples on how to run this project:
 
 ./run.py example2.spp --input 5 10 --verbose
 # This will show the result of the example2.spp file with input(x0=5, x1=10)
+
+./run.py example3.godel
+# This will decode a godel-encoded program and runs it. Then save the code into a .s file.
+
 ```
