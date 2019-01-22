@@ -89,8 +89,8 @@ class Compiler(Interpreter):
                     len(inst_part) == 6:
                 return True
 
-            return inst_part[1] == '<-' and inst_part[0] == inst_part[2] and inst_part[4] == '1' and \
-                   (inst_part[3] == '+' or inst_part[3] == '-') and len(inst_part) == 5
+            if inst_part[1] == '<-' and inst_part[0] == inst_part[2]:
+                return len(inst_part) == 3 or (inst_part[4] == '1' and (inst_part[3] == '+' or inst_part[3] == '-') and len(inst_part) == 5)
         except IndexError:
             return False
 

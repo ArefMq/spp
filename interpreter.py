@@ -53,14 +53,18 @@ class Interpreter:
             if inst_part[0] == 'if' and \
                     inst_part[2] == '!=' and \
                     inst_part[3] == '0' and \
-                    inst_part[4] == 'goto':
+                    inst_part[4] == 'goto' and \
+                    len(inst_part) == 6:
                 return self.exec_if_statement(inst_part[1], inst_part[5])
 
-            if inst_part[1] == '<-' and inst_part[0] == inst_part[2] and inst_part[4] == '1':
-                if inst_part[3] == '+':
-                    return self.exec_incr(inst_part[0])
-                if inst_part[3] == '-':
-                    return self.exec_decr(inst_part[0])
+            if inst_part[1] == '<-' and inst_part[0] == inst_part[2]:
+                if len(inst_part) == 3:
+                    return None
+                if inst_part[4] == '1' and len(inst_part) == 5:
+                    if inst_part[3] == '+':
+                        return self.exec_incr(inst_part[0])
+                    if inst_part[3] == '-':
+                        return self.exec_decr(inst_part[0])
         except IndexError:
             raise UnknownInstruction(instruction)
 
